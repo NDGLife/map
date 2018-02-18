@@ -6,6 +6,7 @@ var map = require('./map.component.js')()
 var app = choo()
 
 css('./style.css')
+
 var spinner = css('./spinner.css')
 var invisible = css`:host { opacity: 0; }`
 

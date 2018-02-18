@@ -3,6 +3,7 @@ var mapboxgl = require('mapbox-gl')
 var sheetify = require('sheetify')
 var Nanocomponent = require('nanocomponent')
 var turf = require('turf')
+var boundaries = require('./ndg.json')
 
 sheetify('mapbox-gl/dist/mapbox-gl.css')
 
@@ -29,7 +30,6 @@ MapComponent.prototype.createElement = function (state, emit) {
 
 MapComponent.prototype.load = function (el) {
   setTimeout(() => {
-    var boundaries = require('./ndg.json')
     var bounds = [ -73.78770599365234, 45.31688783495922, -73.4670280456543, 45.619609390726846 ]
     var mask = turf.polygon(boundaries.features[0].geometry.coordinates[0])
     var map = new mapboxgl.Map({
