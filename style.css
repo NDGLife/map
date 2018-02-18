@@ -1,0 +1,3 @@
+.mapboxgl-ctrl-compass, .mapbox-improve-map {
+  display: none !important;
+}
