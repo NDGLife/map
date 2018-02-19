@@ -23,7 +23,7 @@ app.route('*', function (state, emit) {
           <input type="text" class="pa2 mh2" style="width: 450px;" placeholder="Search for a service, a place, an organization..." />
         </div>
         <div class="flex flex-auto justify-end items-center">
-          <button class="mh2 ph4 pa2">Post</button>
+          <button class="mh2 ph4 pa2">+ Add</button>
         </div>
       </nav>
       <main class="flex w-100 items-center justify-center">
