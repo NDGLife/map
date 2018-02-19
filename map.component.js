@@ -4,6 +4,7 @@ var sheetify = require('sheetify')
 var Nanocomponent = require('nanocomponent')
 var turf = require('turf')
 var boundaries = require('./ndg.json')
+var scale = require('@turf/transform-scale')
 
 sheetify('mapbox-gl/dist/mapbox-gl.css')
 
@@ -23,7 +24,7 @@ MapComponent.prototype.createElement = function (state, emit) {
   this.state = state
   this.emit = emit
 
-  if (!this.el) this.el = html`<div style="border: 1px solid #ccc; height: 500px;"></div>`
+  if (!this.el) this.el = html`<div style="border: 1px solid #ccc; height: 700px"></div>`
 
   return this.el
 }
@@ -31,10 +32,10 @@ MapComponent.prototype.createElement = function (state, emit) {
 MapComponent.prototype.load = function (el) {
   setTimeout(() => {
     var bounds = [ -73.78770599365234, 45.31688783495922, -73.4670280456543, 45.619609390726846 ]
-    var mask = turf.polygon(boundaries.features[0].geometry.coordinates[0])
+    var mask = scale(turf.polygon(boundaries.features[0].geometry.coordinates[0]), 1.05)
     var map = new mapboxgl.Map({
       container: el,
-      center: [-73.62528441043861, 45.467405167566994],
+      center: [-73.62677848221915, 45.46732760841786],
       zoom: 13,
       bearing: -57,
       pitch: 15,
@@ -50,6 +51,8 @@ MapComponent.prototype.load = function (el) {
         type: 'geojson',
         data: polyMask(mask, bounds)
       })
+
+      global.map = map
 
       map.addLayer({
         'id': 'ndg',
