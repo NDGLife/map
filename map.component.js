@@ -24,7 +24,7 @@ MapComponent.prototype.createElement = function (state, emit) {
   this.state = state
   this.emit = emit
 
-  if (!this.el) this.el = html`<div style="border: 1px solid #ccc; height: 700px"></div>`
+  if (!this.el) this.el = html`<div style="height: 100vh"></div>`
 
   return this.el
 }
@@ -35,17 +35,18 @@ MapComponent.prototype.load = function (el) {
     var mask = scale(turf.polygon(boundaries.features[0].geometry.coordinates[0]), 1.05)
     var map = new mapboxgl.Map({
       container: el,
-      center: [-73.62677848221915, 45.46732760841786],
-      zoom: 13,
-      bearing: -57,
-      pitch: 15,
+      center: [-73.61677473906548, 45.476881924798676],
+      zoom: 17.89941016617437,
+      bearing: -17.799999999999955,
+      pitch: 60,
       maxBounds: [ -73.68770599365234, 45.43688783495922, -73.5670280456543, 45.499609390726846 ],
-      style: 'mapbox://styles/kareniel/cjdtaqmpk43oj2rp740hr4dmr'
+      style: 'mapbox://styles/kareniel/cjejbdj4n1kpc2sqoz4r02vb4'
     })
 
+    // disable interactivity
     map.dragRotate.disable()
     map.touchZoomRotate.disableRotation()
-    map.addControl(new mapboxgl.NavigationControl())
+
     map.on('load', () => {
       map.addSource('boundaries', {
         type: 'geojson',
